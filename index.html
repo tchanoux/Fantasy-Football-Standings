@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fantasy Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Fantasy League Scores</h1>
+
+<table id="scoreTable">
+    <tr>
+        <th>Team</th>
+        <th>Score</th>
+    </tr>
+</table>
+
+<script>
+fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+        const table = document.getElementById("scoreTable");
+
+        data.forEach(team => {
+            let row = document.createElement("tr");
+
+            let teamCell = document.createElement("td");
+            teamCell.innerText = team.team;
+
+            let scoreCell = document.createElement("td");
+            scoreCell.innerText = team.score;
+
+            row.appendChild(teamCell);
+            row.appendChild(scoreCell);
+
+            table.appendChild(row);
+        });
+    });
+</script>
+
+</body>
+</html>
