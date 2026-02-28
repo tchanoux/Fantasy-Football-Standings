@@ -1,0 +1,5 @@
+pandas
+requests
+from yahoo_oauth import OAuth2
+xml.etree.ElementTree
+from collections import defaultdict
