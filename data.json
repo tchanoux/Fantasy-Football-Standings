@@ -1,5 +1,110 @@
 [
-  { "team": "Dragons", "score": 120 },
-  { "team": "Warriors", "score": 105 },
-  { "team": "Red Sox", "score": 100}
+  {
+    "Rank":1,
+    "Team":"Orange Crush",
+    "Wins":9,
+    "Losses":5,
+    "Win %":0.643,
+    "Points For":1847.0,
+    "Playoff Status":"p"
+  },
+  {
+    "Rank":2,
+    "Team":"Hampton Inn Zone",
+    "Wins":9,
+    "Losses":5,
+    "Win %":0.643,
+    "Points For":1676.1,
+    "Playoff Status":"p"
+  },
+  {
+    "Rank":3,
+    "Team":"Aaron Jonestown Massacre",
+    "Wins":8,
+    "Losses":6,
+    "Win %":0.571,
+    "Points For":1838.5,
+    "Playoff Status":"p"
+  },
+  {
+    "Rank":4,
+    "Team":"Electric Love",
+    "Wins":8,
+    "Losses":6,
+    "Win %":0.571,
+    "Points For":1771.9,
+    "Playoff Status":"p"
+  },
+  {
+    "Rank":5,
+    "Team":"Won\u2019t You Be My Nabers",
+    "Wins":8,
+    "Losses":6,
+    "Win %":0.571,
+    "Points For":1741.1,
+    "Playoff Status":""
+  },
+  {
+    "Rank":6,
+    "Team":"Bearnado",
+    "Wins":8,
+    "Losses":6,
+    "Win %":0.571,
+    "Points For":1692.8,
+    "Playoff Status":""
+  },
+  {
+    "Rank":7,
+    "Team":"Turn Up",
+    "Wins":7,
+    "Losses":7,
+    "Win %":0.5,
+    "Points For":1741.8,
+    "Playoff Status":""
+  },
+  {
+    "Rank":8,
+    "Team":"Hateful Greats",
+    "Wins":7,
+    "Losses":7,
+    "Win %":0.5,
+    "Points For":1715.2,
+    "Playoff Status":""
+  },
+  {
+    "Rank":9,
+    "Team":"Gold Rush",
+    "Wins":6,
+    "Losses":8,
+    "Win %":0.429,
+    "Points For":1777.1,
+    "Playoff Status":"p"
+  },
+  {
+    "Rank":10,
+    "Team":"Bob Loblaw's LawBlog",
+    "Wins":6,
+    "Losses":8,
+    "Win %":0.429,
+    "Points For":1661.1,
+    "Playoff Status":""
+  },
+  {
+    "Rank":11,
+    "Team":"It\u2019s gonna be Maye",
+    "Wins":5,
+    "Losses":9,
+    "Win %":0.357,
+    "Points For":1836.9,
+    "Playoff Status":"p"
+  },
+  {
+    "Rank":12,
+    "Team":"Getcha Popcorn Ready",
+    "Wins":3,
+    "Losses":11,
+    "Win %":0.214,
+    "Points For":1531.9,
+    "Playoff Status":""
+  }
 ]
