@@ -10,8 +10,13 @@
 
 <table id="scoreTable">
     <tr>
+        <th>Rank</th>
         <th>Team</th>
-        <th>Score</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Win %</th>
+        <th>Points For</th>
+        <th>Playoff Status</th>
     </tr>
 </table>
 
@@ -19,24 +24,118 @@
 fetch('data.json')
     .then(response => response.json())
     .then(data => {
+
         const table = document.getElementById("scoreTable");
 
-        data.forEach(team => {
-            let row = document.createElement("tr");
+        let currentSort = {
+            column: "Rank",
+            direction: "asc"
+        };
 
-            let teamCell = document.createElement("td");
-            teamCell.innerText = team.team;
+        // --- Compute Standings ---
+        function computeStandings(data) {
 
-            let scoreCell = document.createElement("td");
-            scoreCell.innerText = team.score;
+            let sorted = [...data].sort((a, b) => {
+                if (b.Wins !== a.Wins) return b.Wins - a.Wins;
+                return b["Points For"] - a["Points For"];
+            });
 
-            row.appendChild(teamCell);
-            row.appendChild(scoreCell);
+            sorted.forEach((team, index) => {
+                team.Rank = index + 1;
+            });
 
-            table.appendChild(row);
-        });
+            let top4 = sorted.slice(0, 4);
+            let remaining = sorted.slice(4)
+                .sort((a, b) => b["Points For"] - a["Points For"]);
+
+            let wildcards = remaining.slice(0, 2);
+            let playoffTeams = [...top4, ...wildcards];
+
+            sorted.forEach(team => {
+                team["Playoff Status"] =
+                    playoffTeams.some(p => p.Team === team.Team)
+                    ? "Clinched playoffs"
+                    : "";
+            });
+
+            return sorted;
+        }
+
+        let standings = computeStandings(data);
+
+        const headers = [
+            "Rank",
+            "Team",
+            "Wins",
+            "Losses",
+            "Win %",
+            "Points For",
+            "Playoff Status"
+        ];
+
+        function renderTable(rows) {
+            table.innerHTML = "";
+
+            // Header
+            let headerRow = document.createElement("tr");
+
+            headers.forEach(header => {
+                let th = document.createElement("th");
+                th.innerText = header;
+                th.style.cursor = "pointer";
+
+                th.onclick = () => sortTable(header);
+
+                headerRow.appendChild(th);
+            });
+
+            table.appendChild(headerRow);
+
+            // Rows
+            rows.forEach(team => {
+                let row = document.createElement("tr");
+
+                headers.forEach(header => {
+                    let cell = document.createElement("td");
+                    cell.innerText = team[header] ?? "";
+                    row.appendChild(cell);
+                });
+
+                table.appendChild(row);
+            });
+        }
+
+        function sortTable(column) {
+
+            if (currentSort.column === column) {
+                currentSort.direction =
+                    currentSort.direction === "asc" ? "desc" : "asc";
+            } else {
+                currentSort.column = column;
+                currentSort.direction = "asc";
+            }
+
+            let sorted = [...standings].sort((a, b) => {
+
+                let valA = a[column];
+                let valB = b[column];
+
+                if (typeof valA === "number") {
+                    return currentSort.direction === "asc"
+                        ? valA - valB
+                        : valB - valA;
+                } else {
+                    return currentSort.direction === "asc"
+                        ? valA.localeCompare(valB)
+                        : valB.localeCompare(valA);
+                }
+            });
+
+            renderTable(sorted);
+        }
+
+        renderTable(standings);
     });
 </script>
-
 </body>
 </html>
